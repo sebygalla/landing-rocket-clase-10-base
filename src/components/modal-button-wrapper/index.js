@@ -9,12 +9,14 @@ const ModalButtonWrapper = (props) => {
     const { buttonText, modalTitle, modalTextFontSize, modalTitleFontSize, modalText, modalTextColor, modalTextLetterSpacing,
     modalTitleColorText, modalTitleLetterSpacing, buttonModalText, inputPlaceholder } = props;
 
+    const [visible, setVisible] = useState (false);
+
     const onClose = () => {
-        console.log('me cerré')
+        setVisible(false);
     }
 
     const onButtonClick = () => {
-        console.log('abrí el modal');
+        setVisible(true);
     }
 
     const onModalButtonClick = () => {
@@ -24,7 +26,7 @@ const ModalButtonWrapper = (props) => {
     return (
         <div className="modal-button-wrapper">
             <Button buttonText={buttonText} onClick={onButtonClick} />
-            <Modal onClose={onClose}>
+            <Modal visible={visible} onClose={onClose}>
                 {modalTitle && <Title title={modalTitle} fontSize={modalTitleFontSize} color={modalTitleColorText} letterSpacing={modalTitleLetterSpacing} />}
                 {modalText && <Text text={modalText} fontSize={modalTextFontSize} color={modalTextColor} letterSpacing={modalTextLetterSpacing} />}
                 <TextInput placeholder={inputPlaceholder} />
